@@ -268,5 +268,3 @@ for df_name, df in timetable_data.items():
 globals().update(timetable_data)
 
 print("All timetables extracted successfully.")
-
-
