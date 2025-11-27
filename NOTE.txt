@@ -1,0 +1,8 @@
+Frist make the the pipreqs installed
+# pip install pipreqs
+
+Navigate to the directory containing your script
+
+# pipreqs . --force
+
+This will generate a requirements.txt file in the current directory
