@@ -10,7 +10,8 @@ st.set_page_config(
 )
 
 # --- GLOBAL TIME ---
-kl_time = datetime.now()
+# kl_time = datetime.now()
+kl_time = datetime.now() + timedelta(hours=8)  # UTC+8 for Kuala Lumpur
 time_depart = kl_time.time().replace(second=0, microsecond=0)
 
 # --- CACHE FILE LOADING ---
