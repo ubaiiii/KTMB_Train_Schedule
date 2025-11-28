@@ -1,9 +1,8 @@
-```markdown
 # KTMB Train Schedule
 
 Plan your journey with up-to-date KTM Komuter and Intercity train schedules — automatically fetched and structured for easy use.
 
-![Streamlit App Screenshot](streamlit_mainpage.png)
+
 
 ## Overview
 
@@ -11,7 +10,7 @@ This repository contains automated scripts that scrape and parse the official [K
 
 ### Parquet Files
 
-The following timetable datafiles are generated daily:
+The following timetable data files are generated daily:
 
 1. `klang_weekends_route_2.parquet`  
 2. `klang_weekdays_route_1.parquet`  
@@ -26,12 +25,15 @@ The following timetable datafiles are generated daily:
 11. `batu_caves_weekends_route_2.parquet`  
 12. `utara_padangbesar_1.parquet`
 
-Each file corresponds to a specific route and service day (weekdays vs. weekends/holidays), based on KTMB’s published timetables.
+Each file corresponds to a specific route and service type (weekdays vs. weekends/public holidays), based on KTMB’s published timetables.
 
 ## Web App
 
 Explore and search timetables interactively:  
 👉 [https://komuter.streamlit.app/](https://komuter.streamlit.app/)
+
+
+<img src="streamlit_mainpage.png" alt="Streamlit App Screenshot" width="500" />
 
 ## Data Source
 
@@ -45,4 +47,3 @@ This project is open source under the **MIT License**.
 > ⚠️ **Disclaimer**: This project is **not affiliated with Keretapi Tanah Melayu Berhad (KTMB)**. All data is sourced publicly from the official KTMB website for informational purposes only.  
 >  
 > **Timetables are subject to change by KTMB without notice. Always verify your schedule on the [official KTMB website](https://www.ktmb.com.my) before travel.**
-```
