@@ -300,7 +300,8 @@ with tempfile.TemporaryDirectory() as temp_dir:
 
         # Read tables from PDF
         print(f"Reading {name} PDF: {pdf_path}")
-        tables = camelot.read_pdf(pdf_path, pages='1-end')
+        # tables = camelot.read_pdf(pdf_path, pages='1-end')
+        tables = camelot.read_pdf(pdf_path, pages='1-end', backend='pdfium')
         print(f"Extracted {len(tables)} tables from {pdf_path}")
 
         # Save each table as a DataFrame in the dictionary
@@ -370,7 +371,8 @@ else:
             f.write(response.content)
 
         print(f"Reading UTARA PDF: {pdf_path}")
-        tables = camelot.read_pdf(pdf_path, pages='1-end')
+        # tables = camelot.read_pdf(pdf_path, pages='1-end')
+        tables = camelot.read_pdf(pdf_path, pages='1-end', backend='pdfium')
         tables_size = len(tables)
 
         print(f"Extracted {tables_size} tables from {pdf_path}")
