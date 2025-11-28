@@ -1,0 +1,36 @@
+name: Daily Komuter Timetable Scraping
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pandas pyarrow requests beautifulsoup4  # adjust as needed
+
+      - name: Run scraper
+        run: python get_latest_komuter_timetables.py
+
+      - name: Commit updated .parquet file
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add komuter_timetable.parquet  # 👉 USE YOUR ACTUAL FILE NAME
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update timetable $(date +'%Y-%m-%d')" && git push)
