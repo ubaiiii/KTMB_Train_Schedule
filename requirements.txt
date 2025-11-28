@@ -1,5 +1,5 @@
 beautifulsoup4==4.13.4
-camelot_py==1.0.0
+camelot-py==1.0.0
 pandas==2.3.1
-Requests==2.32.4
+requests==2.32.4
 ghostscript
