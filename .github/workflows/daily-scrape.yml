@@ -15,22 +15,30 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ghostscript
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           pip install --upgrade pip
-          pip install pandas pyarrow requests beautifulsoup4  # adjust as needed
+          pip install -r requirements.txt
 
       - name: Run scraper
         run: python get_latest_komuter_timetables.py
 
-      - name: Commit updated .parquet file
+      - name: Commit all updated .parquet files
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add komuter_timetable.parquet  # 👉 USE YOUR ACTUAL FILE NAME
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update timetable $(date +'%Y-%m-%d')" && git push)
+          git add -f *.parquet
+          if ! git diff --staged --quiet; then
+            git commit -m "Update timetables $(date +'%Y-%m-%d')"
+            git push
+          fi
