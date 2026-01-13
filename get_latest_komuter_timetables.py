@@ -248,6 +248,17 @@ timetables_df['Effective_Date'] = (
     .dt.strftime('%Y-%m-%d')
 )
 
+# remove rows with NaT in 'Effective'
+timetables_df = timetables_df.dropna(subset=['Effective_Date'])
+
+# Save in a 'timetables' folder in the current working directory
+DATA_DIR = os.path.join(os.getcwd(), "timetables")
+print(f"Saving the timetables in {DATA_DIR} folder...")
+
+output_path = os.path.join(DATA_DIR, f"timetables_info.parquet")
+timetables_df.to_parquet(output_path, index=False)
+print(f"[{datetime.now()}] Saved timetables_df to {output_path}")
+
 
 print(f"Total {len(timetables_df)} timetables found.")
 
